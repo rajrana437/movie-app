@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from './MovieCard';
-import MovieNotFound from './MovieNotFound';
 
 export class MoviesContainer extends Component {
   render() {
@@ -9,13 +8,11 @@ export class MoviesContainer extends Component {
     let content = '';
 
     content =
-      movies.Response == 'True' ? (
-        movies.Search.map((movie, index) => (
-          <MovieCard key={index} movie={movie} />
-        ))
-      ) : (
-        <MovieNotFound />
-      );
+      movies.Response == 'True'
+        ? movies.Search.map((movie, index) => (
+            <MovieCard key={index} movie={movie} />
+          ))
+        : null;
     return <div className='row'>{content}</div>;
   }
 }
